@@ -1,0 +1,13 @@
+{
+	"name": "extension-tapsellads",
+	"url": "https://github.com/charmdev/extension-tapsellads",
+	"license": "MIT",
+	"contributors":["charmdev"],
+	"tags": ["ads", "api", "ad", "monetization", "tapsell", "tapsellads"],
+	"description": "Tapsell Ads extension for Android",
+	"version": "1.0.0",
+	"dependencies": {
+		
+	},
+	"releasenote": "first commit"
+}

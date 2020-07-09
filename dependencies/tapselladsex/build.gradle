@@ -1,0 +1,21 @@
+apply plugin: 'com.android.library'
+
+android {
+	sourceSets {
+		main {
+			manifest.srcFile 'AndroidManifest.xml'
+			java.srcDirs = ['src']
+		}
+	}
+
+	compileSdkVersion Integer.parseInt(project.ANDROID_BUILD_SDK_VERSION)
+	buildToolsVersion project.ANDROID_BUILD_TOOLS_VERSION
+}
+
+dependencies {
+	implementation project(':deps:extension-api')
+	
+	implementation 'ir.tapsell.plus:tapsell-plus-sdk-android:1.1.1'
+	implementation 'ir.tapsell.sdk:tapsell-sdk-android:4.5.0'
+
+}
