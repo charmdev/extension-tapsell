@@ -13,6 +13,7 @@ class TapsellAds {
 	private static var __init:String->String->Bool->Dynamic->Void = function(rewardedId:String, appId:String, testingAds:Bool, callback:Dynamic){};
 
 	private static var __showRewarded:String->Bool = function(rewardedId:String){ return false; };
+	private static var __rateApp:String->Void = function(package_name:String) { };
 
 	private static var completeCB:Void->Void;
 	private static var skipCB:Void->Void;
@@ -20,6 +21,15 @@ class TapsellAds {
 	private static var _rewardedId:String;
 	private static var _appId:String;
 	private static var canshow:Bool = false;
+
+
+	public static function rateApp(package_name:String) {
+		try {
+			return __rateApp(package_name);
+		} catch (e:Dynamic){
+			trace("rateApp Exception: " + e);
+		}
+	}
 
 	public static function canShowAds():Bool {
 		return canshow;
@@ -63,6 +73,7 @@ class TapsellAds {
 		try{
 			__init = JNI.createStaticMethod("tapselladsex/TapsellEx", "init", "(Ljava/lang/String;Ljava/lang/String;ZLorg/haxe/lime/HaxeObject;)V");
 			__showRewarded = JNI.createStaticMethod("tapselladsex/TapsellEx", "showRewarded", "(Ljava/lang/String;)Z");
+			__rateApp = JNI.createStaticMethod("tapselladsex/TapsellEx", "rateApp", "(Ljava/lang/String;)V");
 			__init(rewardedId, appId, testingAds, instance);
 		}catch(e:Dynamic){
 			trace("Android INIT Exception: "+e);

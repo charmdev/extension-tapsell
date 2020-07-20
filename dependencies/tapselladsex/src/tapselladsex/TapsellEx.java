@@ -23,6 +23,9 @@ import ir.tapsell.sdk.TapsellAdRequestListener;
 import ir.tapsell.sdk.TapsellAdRequestOptions;
 import ir.tapsell.sdk.TapsellAdShowListener;
 
+import android.content.Intent;
+import android.net.Uri;
+
 
 public class TapsellEx extends Extension { 
 
@@ -88,10 +91,17 @@ public class TapsellEx extends Extension {
 		GLSurfaceView view = (GLSurfaceView) Extension.mainView;
 		view.queueEvent(new Runnable() {
 			public void run() {
-				Log.d("TapsellEx ","reportRewardedEvent" + event);
+				Log.d("TapsellEx ","reportRewardedEvent " + event);
 				callback.call("_onRewardedEvent", new Object[] { event } );
 			}
 		});
+	}
+
+	public static void rateApp(final String package_name) {
+		Intent intent = new Intent(Intent.ACTION_EDIT);
+		intent.setData(Uri.parse("bazaar://details?id=" + package_name));
+		intent.setPackage("com.farsitel.bazaar");
+		mainActivity.startActivity(intent);
 	}
 
 	public static boolean showRewarded(final String rewardedId) {
