@@ -14,6 +14,7 @@ class TapsellAds {
 
 	private static var __showRewarded:String->Bool = function(rewardedId:String){ return false; };
 	private static var __rateApp:String->Void = function(package_name:String) { };
+	private static var __reloadRewardedFunc:Void->Void = function() { };
 
 	private static var completeCB:Void->Void;
 	private static var skipCB:Void->Void;
@@ -28,6 +29,14 @@ class TapsellAds {
 			return __rateApp(package_name);
 		} catch (e:Dynamic){
 			trace("rateApp Exception: " + e);
+		}
+	}
+
+	public static function reloadRewardedFunc() {
+		try {
+			return __reloadRewardedFunc();
+		} catch (e:Dynamic){
+			trace("reloadRewardedFunc Exception: " + e);
 		}
 	}
 
@@ -73,6 +82,7 @@ class TapsellAds {
 		try{
 			__init = JNI.createStaticMethod("tapselladsex/TapsellEx", "init", "(Ljava/lang/String;Ljava/lang/String;ZLorg/haxe/lime/HaxeObject;)V");
 			__showRewarded = JNI.createStaticMethod("tapselladsex/TapsellEx", "showRewarded", "(Ljava/lang/String;)Z");
+			__reloadRewardedFunc = JNI.createStaticMethod("tapselladsex/TapsellEx", "reloadRewardedFunc", "()V");
 			__rateApp = JNI.createStaticMethod("tapselladsex/TapsellEx", "rateApp", "(Ljava/lang/String;)V");
 			__init(rewardedId, appId, testingAds, instance);
 		}catch(e:Dynamic){

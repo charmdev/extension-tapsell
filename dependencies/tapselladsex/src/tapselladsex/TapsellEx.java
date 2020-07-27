@@ -97,6 +97,11 @@ public class TapsellEx extends Extension {
 		});
 	}
 
+	public static void reloadRewardedFunc() {
+		Log.d("TapsellEx", "reloadRewardedFunc");
+		TapsellEx.getInstance().reloadRewarded(TapsellEx.rewardedId);
+	}
+
 	public static void rateApp(final String package_name) {
 		Intent intent = new Intent(Intent.ACTION_EDIT);
 		intent.setData(Uri.parse("bazaar://details?id=" + package_name));
