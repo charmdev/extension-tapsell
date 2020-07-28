@@ -141,7 +141,8 @@ public class TapsellEx extends Extension {
 						@Override
 						public void onRewarded(boolean completed) { ///
 							Log.d("Tapsell", "Reward");
-							reportRewardedEvent(TapsellEx.EARNED_REWARD);
+							if (completed)
+								reportRewardedEvent(TapsellEx.EARNED_REWARD);
 						}
 						@Override
 						public void onClosed() {
