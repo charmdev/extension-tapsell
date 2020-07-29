@@ -228,6 +228,29 @@ public class TapsellEx extends Extension {
 		);
 		*/
 
+		loadRewarded();
+		loadRewardedTimeout();
+	}
+
+	private void loadRewardedTimeout() {
+		new Handler().postDelayed(new Runnable() {
+			@Override
+			public void run() {
+
+				Log.d("tapsell", "timeout " + TapsellEx.getInstance().loadingRewarded);
+				
+				if (TapsellEx.getInstance().loadingRewarded)
+				{
+					loadRewarded();
+				}
+				
+				loadRewardedTimeout();
+			}
+		}, 10000);
+	}
+
+	private void loadRewarded() {
+
 		Tapsell.requestAd(mainActivity,
 			TapsellEx.rewardedId,
 			new TapsellAdRequestOptions(),
@@ -253,8 +276,8 @@ public class TapsellEx extends Extension {
 					Log.d("tapsell", "ad error" + message);
 					
 				}
-			});
-		
+			}
+		);
 	}
 
 	private static String md5(String s)  {
