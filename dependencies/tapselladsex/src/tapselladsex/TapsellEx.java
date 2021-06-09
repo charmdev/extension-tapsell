@@ -76,8 +76,8 @@ public class TapsellEx extends Extension {
 
 		Log.d("TapsellEx ","init");
 
-        //TapsellPlus.initialize(mainActivity, appId);
-        Tapsell.initialize(mainActivity, appId);
+        	//TapsellPlus.initialize(mainActivity, appId);
+        	Tapsell.initialize(mainActivity.getApplication(), appId);
 
 		mainActivity.runOnUiThread(new Runnable() {
 			public void run() { getInstance(); }
