@@ -15,7 +15,8 @@ android {
 dependencies {
 	implementation project(':deps:extension-api')
 	
-	implementation 'ir.tapsell.plus:tapsell-plus-sdk-android:1.1.1'
-	implementation 'ir.tapsell.sdk:tapsell-sdk-android:4.5.0'
+	//implementation 'ir.tapsell.plus:tapsell-plus-sdk-android:1.1.1'
+	//implementation 'ir.tapsell.sdk:tapsell-sdk-android:4.5.0'
+	implementation 'ir.tapsell.sdk:tapsell-sdk-android:4.7.0'
 
 }
