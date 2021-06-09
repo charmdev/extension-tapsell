@@ -52,7 +52,7 @@ public class TapsellEx extends Extension {
 			String deviceId = md5(android_id).toUpperCase();
 			Log.d("TapsellEx","DEVICE ID: " + deviceId);
 			
-			//TapsellPlus.addFacebookTestDevice(deviceId);
+			TapsellPlus.addFacebookTestDevice(deviceId);
 		}
 
 		new Handler().postDelayed(new Runnable() {
@@ -76,8 +76,8 @@ public class TapsellEx extends Extension {
 
 		Log.d("TapsellEx ","init");
 
-        	//TapsellPlus.initialize(mainActivity, appId);
-        	Tapsell.initialize(mainActivity.getApplication(), appId);
+        	TapsellPlus.initialize(mainActivity, appId);
+        	//Tapsell.initialize(mainActivity.getApplication(), appId);
 
 		mainActivity.runOnUiThread(new Runnable() {
 			public void run() { getInstance(); }
