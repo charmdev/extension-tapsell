@@ -18,6 +18,7 @@ class TapsellAds {
 
 	private static var completeCB:Void->Void;
 	private static var skipCB:Void->Void;
+	private static var viewCB:Void->Void;
 	private static var rewardFlag:Bool;
 	private static var _rewardedId:String;
 	private static var _appId:String;
@@ -44,9 +45,10 @@ class TapsellAds {
 		return canshow;
 	}
 
-	public static function showRewarded(cb, skip):Bool {
+	public static function showRewarded(cb, skip, view):Bool {
 		completeCB = cb;
 		skipCB = skip;
+		viewCB = view;
 		canshow = false;
 
 		try{
@@ -94,6 +96,7 @@ class TapsellAds {
 	public static inline var FAILED:String = "FAILED";
 	public static inline var CLOSED:String = "CLOSED";
 	public static inline var LOADED:String = "LOADED";
+	public static inline var DISPLAYING:String = "DISPLAYING";
 	public static inline var EARNED_REWARD:String = "EARNED_REWARD";
 
 	public static var onRewardedEvent:String->Void = null;
@@ -119,13 +122,28 @@ class TapsellAds {
 					case EARNED_REWARD:
 						rewardFlag = true;
 
+					case DISPLAYING:
+						if (viewCB != null)
+							viewCB();
+
 					case FAILED:
-						skipCB();
+						if (skipCB != null)
+							skipCB();
+
 						rewardFlag = false;
 						canshow = false;
 
 					case CLOSED:
-						rewardFlag ? completeCB() : skipCB();
+						if (rewardFlag)
+						{
+							if (completeCB != null)
+								completeCB();
+						}
+						else
+						{
+							if (skipCB != null)
+								skipCB();
+						}
 						rewardFlag = false;
 						canshow = false;
 				}
